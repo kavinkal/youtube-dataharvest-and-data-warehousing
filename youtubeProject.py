@@ -1,4 +1,10 @@
 #1
+pip install google-api-python-client
+pip install pymongo
+pip install mysql.connector
+pip install pandas
+pip install streamlit
+
 from googleapiclient.discovery import build
 import pymongo
 import mysql.connector
