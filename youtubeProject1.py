@@ -563,96 +563,95 @@ question=streamlit.selectbox("select the Question",("1.What are the names of all
    placeholder="Select Question...",)
 
 
-match question:
-    case "1.What are the names of all the videos and their corresponding channels?":
-       
-        q1='''select Title,Channel_Name from videos'''
-        mycursor.execute(q1)
-        quesfetch1=mycursor.fetchall()
-        df=pandas.DataFrame(quesfetch1,columns=["Video-Title","Channel_Name"])
-        streamlit.write(df)
-        mydb.commit()
-        
-    case "2.Which channels have the most number of videos, and how many videos do they have?":
-      
-        q1='''select Channel_Name,Videos from channels ORDER BY Videos DESC'''
-        mycursor.execute(q1)
-        quesfetch1=mycursor.fetchall()
-        df=pandas.DataFrame(quesfetch1,columns=["Channel_Name","Videos"])
-        streamlit.write(df)
-        mydb.commit()
+if question== "1.What are the names of all the videos and their corresponding channels?":
+   
+    q1='''select Title,Channel_Name from videos'''
+    mycursor.execute(q1)
+    quesfetch1=mycursor.fetchall()
+    df=pandas.DataFrame(quesfetch1,columns=["Video-Title","Channel_Name"])
+    streamlit.write(df)
+    mydb.commit()
     
-    case "3.What are the top 10 most viewed videos and their respective channels?":
-       
-        q1='''select Title,Views from videos ORDER BY Views DESC LIMIT 10'''
-        mycursor.execute(q1)
-        quesfetch1=mycursor.fetchall()
-        df=pandas.DataFrame(quesfetch1,columns=["Video-Title","Views"])
-        streamlit.write(df)
-        mydb.commit()
-        
-    case "4.How many comments were made on each video, and what are their corresponding video names?":
-       
-        q1='''select Title,Commentcount from videos ORDER BY Views DESC'''
-        mycursor.execute(q1)
-        quesfetch1=mycursor.fetchall()
-        df=pandas.DataFrame(quesfetch1,columns=["Video-Title","Commentcount"])
-        streamlit.write(df)
-        mydb.commit()
-        
-    case "5.Which videos have the highest number of likes, and what are their corresponding channel names?":
-       
-        q1='''select Channel_Name,Likes from videos ORDER BY Likes DESC LIMIT 1'''
-        mycursor.execute(q1)
-        quesfetch1=mycursor.fetchall()
-        df=pandas.DataFrame(quesfetch1,columns=["Channel_Name","Likes"])
-        streamlit.write(df)
-        mydb.commit()
-        
-    case "6.What is the total number of likes and dislikes for each video, and what are their corresponding video names?":
-        
-        q1='''select Channel_Name,Title,Likes from videos'''
-        mycursor.execute(q1)
-        quesfetch1=mycursor.fetchall()
-        df=pandas.DataFrame(quesfetch1,columns=["Channel_Name","Video_Title","Likes"])
-        streamlit.write(df)
-        mydb.commit()
+elif question== "2.Which channels have the most number of videos, and how many videos do they have?":
+  
+    q1='''select Channel_Name,Videos from channels ORDER BY Videos DESC'''
+    mycursor.execute(q1)
+    quesfetch1=mycursor.fetchall()
+    df=pandas.DataFrame(quesfetch1,columns=["Channel_Name","Videos"])
+    streamlit.write(df)
+    mydb.commit()
+
+elif question== "3.What are the top 10 most viewed videos and their respective channels?":
+   
+    q1='''select Title,Views from videos ORDER BY Views DESC LIMIT 10'''
+    mycursor.execute(q1)
+    quesfetch1=mycursor.fetchall()
+    df=pandas.DataFrame(quesfetch1,columns=["Video-Title","Views"])
+    streamlit.write(df)
+    mydb.commit()
     
-    case "7.What is the total number of views for each channel, and what are their corresponding channel names?":
-        
-        q1='''select Channel_Name,Views from channels'''
-        mycursor.execute(q1)
-        quesfetch1=mycursor.fetchall()
-        df=pandas.DataFrame(quesfetch1,columns=["Channel_Name","Views"])
-        streamlit.write(df)
-        mydb.commit()
-        
-    case "8.What are the names of all the channels that have published videos in the year 2022?":
-        
-        q1='''select Channel_Name,Published from videos where YEAR(Published)=2022;'''
-        mycursor.execute(q1)
-        quesfetch1=mycursor.fetchall()
-        df=pandas.DataFrame(quesfetch1,columns=["Channel_Name","Published Date"])
-        streamlit.write(df)
-        mydb.commit()
-        
-    case "9.What is the average duration of all videos in each channel, and what are their corresponding channel names?":
-        
-        q1='''select Channel_Name,AVG(Duration) from videos GROUP BY Channel_Name; '''
-        mycursor.execute(q1)
-        quesfetch1=mycursor.fetchall()
-        df=pandas.DataFrame(quesfetch1,columns=["Channel_Name","Duration"])
-        streamlit.write(df)
-        mydb.commit()
-        
-    case "10.Which videos have the highest number of comments, and what are their corresponding channel names?":
-        
-        q1='''select Channel_Name,Commentcount from videos ORDER BY Commentcount DESC LIMIT 1'''
-        mycursor.execute(q1)
-        quesfetch1=mycursor.fetchall()
-        df=pandas.DataFrame(quesfetch1,columns=["Channel_Name","Commentcount"])
-        streamlit.write(df)
-        mydb.commit()
+elif question== "4.How many comments were made on each video, and what are their corresponding video names?":
+   
+    q1='''select Title,Commentcount from videos ORDER BY Views DESC'''
+    mycursor.execute(q1)
+    quesfetch1=mycursor.fetchall()
+    df=pandas.DataFrame(quesfetch1,columns=["Video-Title","Commentcount"])
+    streamlit.write(df)
+    mydb.commit()
+    
+elif question== "5.Which videos have the highest number of likes, and what are their corresponding channel names?":
+   
+    q1='''select Channel_Name,Likes from videos ORDER BY Likes DESC LIMIT 1'''
+    mycursor.execute(q1)
+    quesfetch1=mycursor.fetchall()
+    df=pandas.DataFrame(quesfetch1,columns=["Channel_Name","Likes"])
+    streamlit.write(df)
+    mydb.commit()
+    
+elif question== "6.What is the total number of likes and dislikes for each video, and what are their corresponding video names?":
+    
+    q1='''select Channel_Name,Title,Likes from videos'''
+    mycursor.execute(q1)
+    quesfetch1=mycursor.fetchall()
+    df=pandas.DataFrame(quesfetch1,columns=["Channel_Name","Video_Title","Likes"])
+    streamlit.write(df)
+    mydb.commit()
+
+elif question== "7.What is the total number of views for each channel, and what are their corresponding channel names?":
+    
+    q1='''select Channel_Name,Views from channels'''
+    mycursor.execute(q1)
+    quesfetch1=mycursor.fetchall()
+    df=pandas.DataFrame(quesfetch1,columns=["Channel_Name","Views"])
+    streamlit.write(df)
+    mydb.commit()
+    
+elif question== "8.What are the names of all the channels that have published videos in the year 2022?":
+    
+    q1='''select Channel_Name,Published from videos where YEAR(Published)=2022;'''
+    mycursor.execute(q1)
+    quesfetch1=mycursor.fetchall()
+    df=pandas.DataFrame(quesfetch1,columns=["Channel_Name","Published Date"])
+    streamlit.write(df)
+    mydb.commit()
+    
+elif question== "9.What is the average duration of all videos in each channel, and what are their corresponding channel names?":
+    
+    q1='''select Channel_Name,AVG(Duration) from videos GROUP BY Channel_Name; '''
+    mycursor.execute(q1)
+    quesfetch1=mycursor.fetchall()
+    df=pandas.DataFrame(quesfetch1,columns=["Channel_Name","Duration"])
+    streamlit.write(df)
+    mydb.commit()
+    
+elif question== "10.Which videos have the highest number of comments, and what are their corresponding channel names?":
+    
+    q1='''select Channel_Name,Commentcount from videos ORDER BY Commentcount DESC LIMIT 1'''
+    mycursor.execute(q1)
+    quesfetch1=mycursor.fetchall()
+    df=pandas.DataFrame(quesfetch1,columns=["Channel_Name","Commentcount"])
+    streamlit.write(df)
+    mydb.commit()
 
 import streamlit as st
 
